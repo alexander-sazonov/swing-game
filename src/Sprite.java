@@ -1,68 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
-public class Sprite {
-    private int x = 40;
-    private int y = 60;
-    private int dx;
-    private int dy;
+public abstract class Sprite {
+    private int x;
+    private int y;
     private int w;
     private int h;
     private Image image;
-    public Sprite(){
-        ImageIcon ii = new ImageIcon("apple.png");
+    public Sprite(String fileImage, int x, int y){
+        ImageIcon ii = new ImageIcon(fileImage);
         image = ii.getImage();
         w = image.getWidth(null);
         h = image.getHeight(null);
+        this.x = x;
+        this.y = y;
     }
 
-    public void move(){
-        x += dx;
-        y += dy;
-    }
+    public abstract void move(int dx, int dy);
 
-    public void keyPressed(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -2;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 2;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = -2;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 2;
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
-    }
 
     public int getX() {
         return x;
@@ -78,6 +33,22 @@ public class Sprite {
 
     public int getH() {
         return h;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public void setH(int h) {
+        this.h = h;
     }
 
     public Image getImage() {
